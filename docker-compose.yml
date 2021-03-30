@@ -1,0 +1,38 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ./docker/go_grpc
+    container_name: grpcSV
+    ports:
+      - "8001:80"
+    tty: true
+    volumes:
+      - ./app/grpcSV:/go/src/app
+    environment:
+      - "GOPATH=/go"
+    stdin_open: true
+  grpc:
+    build:
+      context: ./docker/go_grpc
+    container_name: grpc1
+    ports:
+      - "8002:80"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./app/grpc1:/go/src/app
+    environment:
+      - "GOPATH=/go"
+  client:
+    build:
+      context: ./docker/go_grpcclient
+    container_name: grpcC
+    ports:
+      - "8003:80"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./app/grpcC:/go/src/app
+    environment:
+      - "GOPATH=/go"

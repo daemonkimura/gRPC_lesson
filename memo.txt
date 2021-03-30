@@ -1,0 +1,8 @@
+protoc --go_out=plugins=grpc:. pb/dog.proto
+でprotocol bufferを生成する。
+
+新しくファイル内に
+option go_package = "出力するgoパッケージのディレクトリ";
+が必要になった。.go内でのimportに必要なため
+
+参考：https://christina04.hatenablog.com/entry/protobuf-go-package-option
